@@ -1,0 +1,27 @@
+img {
+    height: 50vh;
+    width: 31vw;
+    margin: 0.5vmax;
+}
+body {
+    background-color: #e0c7a8;
+}
+div {
+    display: flex;
+    width: 31vw;
+    height: 50vh;
+}
+.txp,.txz,.txa {
+    font-size: 20vb;
+}
+h2 {
+    font-size: 100px;
+}
+#back {
+    height: 25vh;
+    width: 10vw;
+}
+#audio {
+    height: 20vh;
+    width: 15vw;
+}

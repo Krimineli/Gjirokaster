@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gjirokastër Ethnographic Museum</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        header {
+            background: #6A5ACD;
+            color: white;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px gray;
+            border-radius: 10px;
+        }
+        img {
+            width: 80%;
+            max-width: 800px;
+            border-radius: 10px;
+            border: 5px solid #6A5ACD;
+            margin-top: 20px;
+        }
+        .info {
+            text-align: left;
+            padding: 20px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+        footer {
+            background: #6A5ACD;
+            color: white;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        #speakButton {
+            width: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        #map {
+            width: 100%;
+            height: 400px;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+        #takeMeButton {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background: #6A5ACD;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #takeMeButton:hover {
+            background: #4b3e96;
+        }
+    </style>
+</head>
+<body>
+    <header>Gjirokastër Ethnographic Museum</header>
+    <div class="container">
+        <img src="hoxha.jpeg" alt="Gjirokastër Ethnographic Museum">
+        <img src="mic.png" alt="Microphone" id="speakButton">
+        <div class="info">
+            <h2>About the Ethnographic Museum</h2>
+            <p>The Gjirokastër Ethnographic Museum is a cultural gem that provides insight into traditional Albanian life, history, and customs. It is located in the birthplace of Enver Hoxha, the former leader of Albania.</p>
+            <h2>History</h2>
+            <p>The museum was built on the site of Enver Hoxha’s former house after the original was destroyed. It showcases the traditional lifestyle of Gjirokastër’s residents, with exhibits featuring household items, clothing, and artifacts from different periods.</p>
+            <h2>Main Attractions</h2>
+            <ul>
+                <li>Traditional Albanian furniture and household items.</li>
+                <li>Exhibits on local crafts, including textiles, woodwork, and ceramics.</li>
+                <li>Recreated rooms showcasing the lifestyle of wealthy families in Gjirokastër.</li>
+                <li>Historical photographs and documents reflecting Albania’s cultural past.</li>
+                <li>A beautiful architectural example of a traditional Gjirokastër home.</li>
+            </ul>
+            <h2>Interesting Facts</h2>
+            <p>The museum is housed in a reconstructed version of Enver Hoxha’s birth home, designed to resemble a wealthy family’s traditional residence rather than a political landmark.</p>
+            <p>Its collection includes beautifully decorated ceilings, handcrafted furniture, and historic textiles that reflect the region's rich artistic heritage.</p>
+            <h2>Visiting Information</h2>
+            <p>The museum is open daily, with guided tours available. It is one of the must-visit sites in Gjirokastër for those interested in Albanian culture and history.</p>
+        </div>
+        
+        <img src="a7f5a253d2b3ff0e994ecbac333f8a406bf598d27f812e18e69070fc1d4ddf4e-removebg-preview.png" alt="Microphone" id="speakButton">
+        
+        <div id="map"></div>
+        <button id="takeMeButton">Take me there</button>
+    </div>
+    <a href="lidhjamonumentet.html">
+        <img src="back.png" alt="Back" style="height:20vh;width:10vw">
+    </a>
+    <footer>&copy; 2025 Gjirokastër Ethnographic Museum | All rights reserved</footer>
+
+    <script>
+        let isSpeaking = false;
+        let speech = new SpeechSynthesisUtterance();
+        let selectedVoice = null;
+
+        function setVoice() {
+            let voices = speechSynthesis.getVoices();
+            selectedVoice = voices.find(voice => voice.name.includes("Male") || voice.name.includes("David") || voice.name.includes("Google UK English Male"));
+        }
+
+        speechSynthesis.onvoiceschanged = setVoice;
+        setVoice();
+
+        document.getElementById("speakButton").addEventListener("click", function() {
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                isSpeaking = false;
+                return;
+            }
+
+            let textToRead = document.querySelector(".info").innerText;
+            textToRead = textToRead.replace(/Gjirokastër/g, "Jee-roh-kas-ter");
+
+            speech.text = textToRead;
+            speech.lang = "en-US";
+            speech.rate = 1.2;
+            speech.pitch = 1;
+
+            if (selectedVoice) {
+                speech.voice = selectedVoice;
+            }
+
+            window.speechSynthesis.speak(speech);
+            isSpeaking = true;
+
+            speech.onend = function () {
+                isSpeaking = false;
+            };
+        });
+
+        function initMap() {
+            let museumLocation = { lat: 40.0701, lng: 20.1403 }; // Coordinates for Gjirokastër Ethnographic Museum
+            let map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 15,
+                center: museumLocation,
+            });
+            new google.maps.Marker({
+                position: museumLocation,
+                map: map,
+                title: "Gjirokastër Ethnographic Museum"
+            });
+        }
+
+        document.getElementById("takeMeButton").addEventListener("click", function() {
+            alert("Follow me...");
+        });
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+</body>
+</html>

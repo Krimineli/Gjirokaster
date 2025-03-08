@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gjirokastër Castle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px gray;
+            border-radius: 10px;
+        }
+        img {
+            width: 80%;
+            max-width: 800px;
+            border-radius: 10px;
+            border: 5px solid #2c3e50;
+            margin-top: 20px;
+        }
+        .info {
+            text-align: left;
+            padding: 20px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        #speakButton {
+            width: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        #map {
+            width: 100%;
+            height: 400px;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+        #takeMeButton {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #takeMeButton:hover {
+            background: #1a252f;
+        }
+    </style>
+</head>
+<body>
+    <header>Gjirokastër Castle</header>
+    <div class="container">
+        <img src="OIP.jpeg" alt="Gjirokastër Castle">
+        <img src="a7f5a253d2b3ff0e994ecbac333f8a406bf598d27f812e18e69070fc1d4ddf4e-removebg-preview.png" alt="Microphone" id="speakButton">
+        <div class="info">
+            <h2>About Gjirokastër Castle</h2>
+            <p>Gjirokastër Castle is a fortress in Gjirokastër, Albania, with a history dating back to the 12th century. It is one of the largest castles in the Balkans and offers stunning views of the city and the Drino valley.</p>
+            <h2>History</h2>
+            <p>The castle has been used as a military fortress, a prison, and now serves as a museum showcasing weapons and historical artifacts from different eras. It played a significant role in Albania's history and is a symbol of resilience and cultural heritage. The castle has been expanded and modified over the centuries, with contributions from various ruling powers, including the Ottoman Empire.</p>
+            <h2>Attractions</h2>
+            <ul>
+                <li>The National Museum of Armaments - Displays weapons from different time periods.</li>
+                <li>The Prison of the Castle - Used during the Communist era for political prisoners.</li>
+                <li>A World War II US Airplane - A mysterious relic with debated origins.</li>
+                <li>Beautiful panoramic views of Gjirokastër and the surrounding mountains.</li>
+                <li>The annual Gjirokastër National Folklore Festival, a major cultural event.</li>
+                <li>The Clock Tower - One of the most iconic structures within the castle.</li>
+                <li>Underground Water Cisterns - Used historically to store water for times of siege.</li>
+            </ul>
+            <h2>Location</h2>
+            <div id="map"></div>
+            <button id="takeMeButton">Take me there</button>
+        </div>
+    </div>
+    <a href="lidhjamonumentet.html">
+        <img src="back.png" alt="Back" style="height:20vh;width:10vw">
+    </a>
+    <footer>&copy; 2025 Gjirokastër Castle | All rights reserved</footer>
+    <script>
+        let isSpeaking = false;
+        let speech = new SpeechSynthesisUtterance();
+        let selectedVoice = null;
+
+        function setVoice() {
+            let voices = speechSynthesis.getVoices();
+            selectedVoice = voices.find(voice => voice.name.includes("Male") || voice.name.includes("David") || voice.name.includes("Google UK English Male"));
+        }
+
+        speechSynthesis.onvoiceschanged = setVoice;
+        setVoice();
+
+        document.getElementById("speakButton").addEventListener("click", function() {
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                isSpeaking = false;
+                return;
+            }
+
+            let textToRead = document.querySelector(".info").innerText;
+            textToRead = textToRead.replace(/Gjirokastër/g, "Jee-roh-kas-ter");
+
+            speech.text = textToRead;
+            speech.lang = "en-US";
+            speech.rate = 1.2;
+            speech.pitch = 1;
+
+            if (selectedVoice) {
+                speech.voice = selectedVoice;
+            }
+
+            window.speechSynthesis.speak(speech);
+            isSpeaking = true;
+
+            speech.onend = function () {
+                isSpeaking = false;
+            };
+        });
+
+        function initMap() {
+            let castleLocation = { lat: 40.0755, lng: 20.1389 };
+            let map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 15,
+                center: castleLocation,
+            });
+            new google.maps.Marker({
+                position: castleLocation,
+                map: map,
+                title: "Gjirokastër Castle"
+            });
+        }
+
+        document.getElementById("takeMeButton").addEventListener("click", function() {
+            alert("Follow me...");
+        });
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gjirokastër Old Bazaar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        header {
+            background: #8B4513;
+            color: white;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px gray;
+            border-radius: 10px;
+        }
+        img {
+            width: 80%;
+            max-width: 800px;
+            border-radius: 10px;
+            border: 5px solid #8B4513;
+            margin-top: 20px;
+        }
+        .info {
+            text-align: left;
+            padding: 20px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+        footer {
+            background: #8B4513;
+            color: white;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        #speak-button {
+            margin: 20px;
+            cursor: pointer;
+            width: 80px;
+        }
+        #map {
+            width: 100%;
+            height: 400px;
+            margin-top: 20px;
+        }
+        #take-me-there {
+            margin-top: 20px;
+            font-size: 18px;
+            cursor: pointer;
+            color: #8B4513;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>Παλιό παζάρι του Gjirokastër</header>
+    <div class="container">
+        <img src="download.jpeg" alt="Παλιό παζάρι του Gjirokastër">
+        <div class="info">
+            <h2>Σχετικά με το Παλιό Παζάρι</h2>
+            <p>Το Παλιό Παζάρι του Gjirokastër είναι μια ιστορική αγορά που χρονολογείται από την οθωμανική εποχή. Βρίσκεται στην καρδιά της πόλης και αποτελεί εδώ και αιώνες κέντρο εμπορίου, πολιτισμού και χειροτεχνίας.</p>
+            <h2>Ιστορία</h2>
+            <p>Αρχικά χτισμένο τον 17ο αιώνα, το παζάρι έχει υποστεί διάφορες μεταμορφώσεις λόγω πυρκαγιών και ανακατασκευών. Παρά τις αλλαγές αυτές, διατηρεί την παραδοσιακή του γοητεία, με τα λιθόστρωτα δρομάκια και τα χαρακτηριστικά κτίρια με πέτρινη στέγη.</p>
+            <h2>Κύρια αξιοθέατα</h2>
+            <ul>
+                <li>Χειροποίητα αναμνηστικά και παραδοσιακά αλβανικά προϊόντα.</li>
+                <li>Τοπικοί τεχνίτες παρουσιάζουν ξυλουργικές κατασκευές, κεραμικά και υφάσματα.</li>
+                <li>Παραδοσιακά καφέ και εστιατόρια που σερβίρουν αυθεντική κουζίνα.</li>
+                <li>Όμορφη οθωμανική αρχιτεκτονική και ιστορικά κτίρια.</li>
+                <li>Μια ζωντανή ατμόσφαιρα αγοράς με τοπικούς πωλητές και παραστάσεις δρόμου.</li>
+            </ul>
+            <h2>Ενδιαφέροντα γεγονότα</h2>
+            <p>Το Παλιό Παζάρι είναι διάσημο για το καλοδιατηρημένο οθωμανικό του σχέδιο και το ρόλο του στη σύνδεση εμπόρων από διαφορετικές περιοχές. Πολλά από τα καταστήματα είναι οικογενειακές επιχειρήσεις που περνούν από γενιά σε γενιά.</p>
+            <p>Αποτελεί επίσης σημαντικό τουριστικό αξιοθέατο, προσφέροντας στους επισκέπτες μια γεύση από την πλούσια κληρονομιά της Αλβανίας και την τοπική χειροτεχνία.</p>
+            <h2>Πληροφορίες επίσκεψης</h2>
+            <p>Το παζάρι είναι ανοιχτό καθημερινά, ενώ η καλύτερη ώρα για να το επισκεφθείτε είναι το πρωί ή αργά το απόγευμα. Διατίθενται ξεναγήσεις και αποτελεί έναν απαραίτητο προορισμό για όποιον εξερευνά το Gjirokastër.</p>
+        </div>
+
+        <div id="map">
+            <iframe 
+                src="https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=Gjirokastër+Old+Bazaar,Albania&zoom=15&maptype=roadmap" 
+                frameborder="0" style="border:0" allowfullscreen>
+            </iframe>
+        </div>
+
+        <div id="take-me-there" onclick="takeMeThere()">
+            Παίρνω εγώ εκεί
+        </div>
+
+        <img id="speak-button" src="a7f5a253d2b3ff0e994ecbac333f8a406bf598d27f812e18e69070fc1d4ddf4e-removebg-preview.png" alt="Microphone">
+
+        <a href="lidhjamonumentetgr.html">
+            <img src="back.png" alt="Back" style="height:20vh;width:10vw">
+        </a>
+    </div>
+    <footer>&copy; 2025 Gjirokastër Old Bazaar | All rights reserved</footer>
+
+    <script>
+        let speech = new SpeechSynthesisUtterance();
+        let isSpeaking = false;
+
+        speech.rate = 1.2;
+        speech.pitch = 1;
+        speech.lang = "el-GR";
+
+        function setMaleVoice() {
+            let voices = speechSynthesis.getVoices();
+            let maleVoice = voices.find(voice => voice.name.includes("Male") || voice.name.includes("Google UK English Male"));
+            if (maleVoice) {
+                speech.voice = maleVoice;
+            }
+        }
+
+        speechSynthesis.onvoiceschanged = setMaleVoice;
+
+        document.getElementById("speak-button").addEventListener("click", function () {
+            if (isSpeaking) {
+                speechSynthesis.cancel();
+                isSpeaking = false;
+            } else {
+                speech.text = document.querySelector(".info").innerText;
+                speechSynthesis.speak(speech);
+                isSpeaking = true;
+            }
+        });
+
+        function takeMeThere() {
+            alert("Ακολουθήστε με!");
+        }
+    </script>
+</body>
+</html>

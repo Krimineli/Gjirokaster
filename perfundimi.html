@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monuments Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #4CAF50;
+            text-align: center;
+            font-size: 30px;
+        }
+        p {
+            font-size: 18px;
+            text-align: center;
+        }
+        a {
+            font-size: 20px;
+            color: #008CBA;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #005f6b;
+        }
+        .frame-container {
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+        .frame {
+            width: 100%;
+            height: 33%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="frame-container">
+        <iframe class="frame" src="about:blank" name="frame1"></iframe>
+    </div>
+    <div class="frame-container">
+        <iframe class="frame" src="about:blank" name="frame2"></iframe>
+    </div>
+    <div class="frame-container">
+        <iframe class="frame" src="about:blank" name="frame3"></iframe>
+    </div>
+
+    <script>
+        document.querySelector("iframe[name='frame1']").contentDocument.write(`
+            <div class="frame-container">
+                <h1>Monuments</h1>
+                <p>Discover the beauty of ancient structures.</p>
+                <a href="lidhjamonumentet.html" target="_blank">Find More</a>
+            </div>
+        `);
+
+        document.querySelector("iframe[name='frame2']").contentDocument.write(`
+            <div class="frame-container">
+                <h1>If You Are Tired</h1>
+                <p>Take a break and enjoy a meal.</p>
+                <a href="restorant.html" target="_blank">Click Here</a>
+            </div>
+        `);
+
+        document.querySelector("iframe[name='frame3']").contentDocument.write(`
+            <div class="frame-container">
+                <h1>Emergency</h1>
+                <p>Need immediate help? Get in touch now.</p>
+                <a href="numrat.html" target="_blank">Press Here</a>
+            </div>
+        `);
+    </script>
+     <a href="locations.html">
+    <img src="back.png">
+    </a>
+</body>
+</html>

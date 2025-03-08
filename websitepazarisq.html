@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pazari i Vjetër i Gjirokastrës</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        header {
+            background: #8B4513;
+            color: white;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px gray;
+            border-radius: 10px;
+        }
+        img {
+            width: 80%;
+            max-width: 800px;
+            border-radius: 10px;
+            border: 5px solid #8B4513;
+            margin-top: 20px;
+        }
+        .info {
+            text-align: left;
+            padding: 20px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+        footer {
+            background: #8B4513;
+            color: white;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        #speak-button {
+            margin: 20px;
+            cursor: pointer;
+            width: 80px;
+        }
+        #map {
+            width: 100%;
+            height: 400px;
+            margin-top: 20px;
+        }
+        #take-me-there {
+            margin-top: 20px;
+            font-size: 18px;
+            cursor: pointer;
+            color: #8B4513;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>Pazari i Vjetër i Gjirokastrës</header>
+    <div class="container">
+        <img src="download.jpeg" alt="Pazari i Vjetër i Gjirokastrës">
+        <div class="info">
+            <h2>Rreth Pazarit të Vjetër</h2>
+            <p>Pazari i Vjetër i Gjirokastrës është një treg historik që daton nga epoka osmane. I vendosur në zemër të qytetit, ai ka qenë një qendër tregtie, kulture dhe artizanati për shekuj.</p>
+            <h2>Historia</h2>
+            <p>Fillimisht i ndërtuar në shekullin XVII, pazari ka pësuar transformime të ndryshme për shkak të zjarreve dhe rindërtimeve. Pavarësisht nga këto ndryshime, ajo ruan sharmin e saj tradicional, me rrugë me kalldrëm dhe ndërtesa karakteristike me çati guri.</p>
+            <h2>Atraksione Kryesore</h2>
+            <ul>
+                <li>Suvenire të punuara me dorë dhe mallra tradicionale shqiptare.</li>
+                <li>Artizanët vendas që paraqesin punime druri, qeramikë dhe tekstile.</li>
+                <li>Kafenetë dhe restorantet tradicionale që shërbejnë kuzhinë autentike.</li>
+                <li>Arkitekturë e bukur e epokës osmane dhe ndërtesa historike.</li>
+                <li>Një atmosferë e gjallë tregu me shitësit vendas dhe shfaqjet në rrugë.</li>
+            </ul>
+            <h2>Fakte Interesante</h2>
+            <p>Pazari i Vjetër është i famshëm për dizajnin osman të ruajtur mirë dhe rolin e tij në lidhjen e tregtarëve nga rajone të ndryshme. Shumë nga dyqanet janë biznese familjare të transmetuara për breza të tërë.</p>
+            <p>Ajo është gjithashtu një tërheqje e madhe turistike, duke u ofruar vizitorëve një vështrim në trashëgiminë e pasur të Shqipërisë dhe zejtarinë lokale.</p>
+            <h2>Informacion për Vizitorë</h2>
+            <p>Pazari është i hapur çdo ditë, me kohën më të mirë për t'u vizituar duke qenë në mëngjes ose pasdite vonë. Turet e guiduara janë në dispozicion, dhe është një destinacion i domosdoshëm për këdo që eksploron Gjirokastrën.</p>
+        </div>
+
+        <div id="map">
+            <iframe 
+                src="https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=Gjirokastër+Old+Bazaar,Albania&zoom=15&maptype=roadmap" 
+                frameborder="0" style="border:0" allowfullscreen>
+            </iframe>
+        </div>
+
+        <div id="take-me-there" onclick="takeMeThere()">
+            Më ço atje
+        </div>
+
+        <img id="speak-button" src="a7f5a253d2b3ff0e994ecbac333f8a406bf598d27f812e18e69070fc1d4ddf4e-removebg-preview.png" alt="Microphone">
+
+        <a href="lidhjamonumentetshq.html">
+            <img src="back.png" alt="Back" style="height:20vh;width:10vw">
+        </a>
+    </div>
+    <footer>&copy; 2025 Gjirokastër Old Bazaar | All rights reserved</footer>
+
+    <script>
+        let speech = new SpeechSynthesisUtterance();
+        let isSpeaking = false;
+
+        speech.rate = 1.2;
+        speech.pitch = 1;
+        speech.lang = "sq-AL";
+
+        function setMaleVoice() {
+            let voices = speechSynthesis.getVoices();
+            let maleVoice = voices.find(voice => voice.name.includes("Male") || voice.name.includes("Google UK English Male"));
+            if (maleVoice) {
+                speech.voice = maleVoice;
+            }
+        }
+
+        speechSynthesis.onvoiceschanged = setMaleVoice;
+
+        document.getElementById("speak-button").addEventListener("click", function () {
+            if (isSpeaking) {
+                speechSynthesis.cancel();
+                isSpeaking = false;
+            } else {
+                speech.text = document.querySelector(".info").innerText;
+                speechSynthesis.speak(speech);
+                isSpeaking = true;
+            }
+        });
+
+        function takeMeThere() {
+            alert("Më ndiq!");
+        }
+    </script>
+</body>
+</html>

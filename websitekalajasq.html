@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gjirokastër Castle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px gray;
+            border-radius: 10px;
+        }
+        img {
+            width: 80%;
+            max-width: 800px;
+            border-radius: 10px;
+            border: 5px solid #2c3e50;
+            margin-top: 20px;
+        }
+        .info {
+            text-align: left;
+            padding: 20px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        #speak-button {
+            margin: 20px;
+            cursor: pointer;
+            width: 80px;
+        }
+        #map {
+            width: 100%;
+            height: 400px;
+            margin-top: 20px;
+        }
+        #take-me-there {
+            margin-top: 20px;
+            font-size: 18px;
+            cursor: pointer;
+            color: #2c3e50;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>Kalaja e Gjirokastrës</header>
+    <div class="container">
+        <img src="OIP.jpeg" alt="Kalaja e Gjirokastrës">
+        <div class="info">
+            <h2>Rreth Kalasë së Gjirokastrës</h2>
+            <p>Kalaja e Gjirokastrës është një fortesë në Gjirokastër, Shqipëri, me një histori që daton në shekullin e XII. Është një nga kështjellat më të mëdha në Ballkan dhe ofron pamje mahnitëse të qytetit dhe luginës së Drinos.</p>
+            <h2>Historia</h2>
+            <p>Kështjella është përdorur si një fortesë ushtarake, një burg, dhe tani shërben si një muze që paraqet armë dhe artefakte historike nga epoka të ndryshme. Ajo luajti një rol të rëndësishëm në historinë e Shqipërisë dhe është simbol i elasticitetit dhe trashëgimisë kulturore. Kështjella është zgjeruar dhe modifikuar gjatë shekujve, me kontribute nga fuqi të ndryshme sunduese, duke përfshirë Perandorinë Osmane.</p>
+            <h2>Atraksion</h2>
+            <ul>
+                <li>Muzeu Kombëtar i Armatimeve - Shfaq armë nga periudha të ndryshme kohore.</li>
+                <li>Burgu i Kështjellës - Përdoret gjatë epokës komuniste për të burgosurit politikë.</li>
+                <li>Një aeroplan amerikan i Luftës së Dytë Botërore - Një relike misterioze me origjinë të debatuar.</li>
+                <li>Pamje të bukura panoramike të Gjirokastrës dhe maleve përreth.</li>
+                <li>Festivali vjetor i Folklorit Kombëtar të Gjirokastrës, një ngjarje e madhe kulturore.</li>
+                <li>Kulla e Sahatit - Një nga strukturat më ikonike brenda kështjellës.</li>
+                <li>Sternat nëntokësore të ujit - Përdoren historikisht për të ruajtur ujin për kohë rrethimi.</li>
+            </ul>
+            <h2>Fakte Interesante</h2>
+            <p>Kështjella është e njohur për tunelet e saj të frikshme dhe kalimet nëntokësore, duke shtuar sharmin e saj misterioz. Ajo strehon gjithashtu një kullë ore që i ka qëndruar provës së kohës, duke ofruar një vështrim në trashëgiminë arkitekturore të rajonit.</p>
+            <p>Legjendat thonë se kështjella dikur ishte shtëpia e takimeve sekrete dhe strategjive ushtarake të planifikuara në dhoma të fshehura. Kalaja i ka mbijetuar pushtimeve të shumta, duke e bërë atë një vend historik kyç në Shqipëri.</p>
+            <h2>Informacion për Vizitorët</h2>
+            <p>Kështjella është e hapur për vizitorët gjatë gjithë vitit, me tour-e udhëzuese në dispozicion për ata që janë të interesuar në historinë e saj të thellë. Është e rekomanduar për të vizituar gjatë perëndimit të diellit për të shijuar pamjet mahnitëse mbi Gjirokastër.</p>
+        </div>
+
+        <div id="map">
+            <iframe 
+                src="https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=Gjirokastër+Castle,Albania&zoom=15&maptype=roadmap" 
+                frameborder="0" style="border:0" allowfullscreen>
+            </iframe>
+        </div>
+
+        <div id="take-me-there" onclick="takeMeThere()">
+           Më ço atje
+        </div>
+
+        <img id="speak-button" src="a7f5a253d2b3ff0e994ecbac333f8a406bf598d27f812e18e69070fc1d4ddf4e-removebg-preview.png" alt="Μικρόφωνο">
+
+        <a href="lidhjamonumentetshq.html">
+            <img src="back.png" alt="Back" style="height:20vh;width:10vw">
+        </a>
+    </div>
+    <footer>&copy; 2025 Gjirokastër Castle | All rights reserved</footer>
+
+    <script>
+        let speech = new SpeechSynthesisUtterance();
+        let isSpeaking = false;
+
+        speech.rate = 1.2;
+        speech.pitch = 1;
+        speech.lang = "en-GB";
+
+        function setMaleVoice() {
+            let voices = speechSynthesis.getVoices();
+            let maleVoice = voices.find(voice => voice.name.includes("Male") || voice.name.includes("Google UK English Male"));
+            if (maleVoice) {
+                speech.voice = maleVoice;
+            }
+        }
+
+        speechSynthesis.onvoiceschanged = setMaleVoice;
+
+        document.getElementById("speak-button").addEventListener("click", function () {
+            if (isSpeaking) {
+                speechSynthesis.cancel();
+                isSpeaking = false;
+            } else {
+                speech.text = document.querySelector(".info").innerText;
+                speechSynthesis.speak(speech);
+                isSpeaking = true;
+            }
+        });
+
+        function takeMeThere() {
+            alert("Më ndiqni!");
+        }
+    </script>
+</body>
+</html>
